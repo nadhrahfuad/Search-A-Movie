@@ -1,19 +1,19 @@
 import React from 'react'
-import "../styles/display.css"
+import "../styles/cardbase.css"
 import ErrorContainer from './ErrorContainer'
 import CardBase from './CardBase'
 import { useContext } from 'react'
 import MovieContext from '../context/MovieContext'
 import CartContext from '../context/CartContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCartPlus } from '@fortawesome/free-solid-svg-icons'
+import { faBookmark } from '@fortawesome/free-solid-svg-icons'
 
 
 
 const Cards = () => {
 
   const {finalList} = useContext(MovieContext)
-  const { addToCart, error, errorMessage} = useContext(CartContext)
+  const { saveToList, error, errorMessage} = useContext(CartContext)
 
   
   return (
@@ -30,16 +30,16 @@ const Cards = () => {
         <div  className='details flexcol ' key={ind}>
 
         
-          <div className="addtocardbtncontainer">
+          <div className="addtolistbtncontainer">
             
           {error === ele.imdbID && 
            <ErrorContainer message={errorMessage} />}
            
-          <button className= "lineheight primarybtn" onClick={()=>{
-            addToCart(ele, ind)
+          <button className= "lineheight primarybtn adddelete" onClick={()=>{
+            saveToList(ele, ind)
           
 
-           }}><FontAwesomeIcon icon={faCartPlus} className=' addtocart' /></button> 
+           }}><FontAwesomeIcon icon={faBookmark} className=' savetolist' /></button> 
            </div>
 
           <CardBase 
