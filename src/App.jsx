@@ -17,7 +17,7 @@ import MovieLogo from "./assets/13-26-07-593_512.webp"
 function App() {
 
 
-  const {openCart, cartCount, toggleCart} = useContext(CartContext)
+  const {openList, cartCount, toggleList} = useContext(CartContext)
 
 
 
@@ -37,14 +37,14 @@ function App() {
     <div className="carticoncontainer">
 
     <span className= {`cartnum txtlight`}>{cartCount}</span>
-    <FontAwesomeIcon className={`${cartCount > 0? "primary" : "txtlight"}`}  onClick={openCart} icon={faCartShopping} />
+    <FontAwesomeIcon className={`${cartCount > 0? "primary" : "txtlight"}`}  onClick={toggleList} icon={faCartShopping} />
 
     </div>
     </div>
      </div>
 
     {
-      toggleCart &&
+      openList &&
       <Cart />
 
     }

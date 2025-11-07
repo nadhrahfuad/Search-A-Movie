@@ -8,19 +8,19 @@ const CartContextProvider = ({children}) => {
 
   const [cartList, setCartList] = useState([])
   const [cartCount, setCartCount] = useState(0)
-  const [toggleCart, setToggleCart] = useState(false)
+  const [openList, setOpenList] = useState(false)
   const [currInd, setCurrInd] = useState(null)
   const [error, setErrorInd] = useState(null)
 
   const [errorMessage, setErrorMessage] = useState("")
 
-   function openCart(){
+   function toggleList(){
     
-    setToggleCart(!toggleCart)
+    setOpenList(!openList)
   }
 
 
-  function addToCart(ele,ind){
+  function saveToList(ele,ind){
 
     const duplicate = cartList.find(function(movie){
         return movie.imdbID === ele.imdbID
@@ -50,7 +50,7 @@ const CartContextProvider = ({children}) => {
   }
 
 
-  function removeFromCart(ele){
+  function removeFromList(ele){
 
     const duplicate = cartList.find(function(movie){
         return movie.imdbID === ele.imdbID
@@ -97,19 +97,20 @@ const CartContextProvider = ({children}) => {
   return (
     <CartContext.Provider
     value={
-        {cartList,
+        {
+        cartList,
         setCartList,
+        openList,
         cartCount,
-        openCart,
-        setToggleCart,
-        toggleCart,
+        setOpenList,
+        toggleList,
         currInd,
         setCurrInd,
         setCartCount,
-        addToCart,
+        saveToList,
         error,
         setErrorInd,
-        removeFromCart,
+        removeFromList,
         toggleReview,
         errorMessage
     

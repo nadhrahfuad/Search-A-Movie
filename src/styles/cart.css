@@ -1,4 +1,4 @@
-.cartcontainerouter{
+.listcontainerouter{
      display: flex;
      flex-direction: column;
      justify-content: flex-start;
@@ -12,44 +12,40 @@
     margin-top: 16px;
     width: 100%;
     min-height: 100vh;
+    /* border: green solid 2px; */
    
 }
 
-.carttitle{
+.listtitle{
   display: flex;
   padding-top: 32px;
   padding-bottom: 24px;
   padding-left: 20px;
 }
 
-.carttxt{
+.listtxt{
     font-size: 20px;
 }
 
-.cartinner{
-
+.listinner{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+    /* border: RED 2PX SOLID; */
     background-color: #172239;
      z-index: 3;
      
 
 }
 
-.cartNDelete{
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding-bottom: 16px;
-
- 
+.cardndelete{
+  border: orange solid 3px;
 }
 
-button {
-  width: auto;              
-  align-self: center;       
-  border: none; 
-  cursor: pointer;
-  transition: 0.3s ease;
+.removecontainer button{
+  font-size: 20px;
 }
+
 
 .emptycontainer{
     display: flex;
