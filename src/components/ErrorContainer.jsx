@@ -2,7 +2,6 @@ import React from 'react'
 import "../styles/error.css"
 import { useState } from 'react'
 import { useEffect } from 'react'
-import MovieContext from '../context/MovieContext'
 
 
 const ErrorContainer = (props) => {
