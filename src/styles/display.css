@@ -1,0 +1,122 @@
+
+
+.details{
+    /* border: solid black 1px; */
+    align-items: center;
+    gap: 10px;
+    background-color: #343f553e;
+    border-radius: 20px;
+    padding: 24px;
+    align-self: flex-start;
+
+}
+
+.details:hover{
+    /* border: solid black 1px; */
+    box-shadow: rgba(80, 80, 113, 0.25) 0px 20px 100px -20px, rgba(0, 0, 0, 0.3) 0px 20px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    transition: 0.5s;
+
+}
+
+
+.titleNPoster{
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.title{
+    font-weight: 400;
+    font-size: 20px;
+}
+
+
+.bottomdetails{
+    padding-top: 10px;
+    gap: 8px;
+}
+
+
+
+img{
+    height: auto;
+    width: 200px;
+    border-radius: 15px;
+}
+
+.plotcontainer{
+    background-color: #080e1b;
+    padding: 16px;
+    border-radius: 15px;
+}
+
+.sectionpadding{
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+
+
+
+.breaklinecontainer{
+    padding: 16px 8px;
+    width: 100%;
+}
+
+.breakline{
+    width: 100%;
+    border: 0.5px #2f364494 solid ;
+}
+
+.year{
+    text-align: center;
+}
+
+
+
+
+.ratingscontainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+
+.addtocardbtncontainer{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+    /* border: red solid 2px; */
+}
+
+.addtocardbtncontainer button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+    border-radius: 100%;
+}
+
+.addtocardbtncontainer button:hover{
+    border: 1px white solid;
+}
+
+
+.addtocart{
+    font-size: 20px;
+    color: #050d1f;
+}
+
+.addtocart:hover{
+    font-size: 20px;
+    color: white;
+    transition: 0.5s;
+}
+
+

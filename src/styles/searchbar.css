@@ -1,0 +1,37 @@
+.searchbar{
+    display: flex;  
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    /* padding: 16px; */
+    gap: 20px;
+    width: 100%;
+}
+
+form{
+     width: 100%;
+    display: flex;
+    gap: 8px;
+     border-radius: 30px;
+    border: 1px solid rgba(209, 157, 79, 0.615);
+    padding: 4px;
+}
+
+form input{
+    width: 100%;
+    padding: 6px 16px;
+    border: none;
+    background-color: transparent;
+   
+}
+
+form ::placeholder {
+  color: rgb(229, 218, 202);
+  opacity: 1; 
+}
+
+
+
+
+
+

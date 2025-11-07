@@ -1,0 +1,9 @@
+.errorcontainer{
+    display: flex;
+    background-color: rgba(255, 43, 43, 0.519);
+    border: rgba(245, 119, 119, 0.347) solid 0.5px;
+    padding: 12px 24px;
+    border-radius: 30px;
+    color: rgb(223, 190, 190);
+    text-align: center;
+}

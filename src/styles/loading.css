@@ -1,0 +1,13 @@
+.loadingcontainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+.loadingtxt{
+    font-size: 16px;
+    letter-spacing: 2px;
+    color: rgb(232, 164, 62);
+    font-weight: 300;
+}

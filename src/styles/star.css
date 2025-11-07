@@ -1,0 +1,21 @@
+.star{
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.startcontainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 16px 4px 4px 4px;
+
+}
+
+.starcolour{
+    color: rgb(219, 200, 58);
+    font-size: 20px;
+    cursor: pointer;
+
+}

@@ -1,0 +1,55 @@
+.carticoncontainer{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+    z-index: 10;
+    /* padding: 4px 24px; */
+
+}
+.header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.imglogo{
+    height: 50px;
+    width: auto;
+}
+.siteheader{
+    padding: 8px;
+}
+
+.siteheader{
+    font-size: 15px;
+    width: 150px;
+    text-align: center;
+    letter-spacing: 2px;
+    color: rgb(255, 191, 53);
+}
+
+.maintop{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 24px;
+}
+.searchNCart{
+    width: 100%;
+}
+
+@media (max-width:800px) {
+    .maintop{
+        flex-direction: column;
+    }
+
+    .siteheader{
+    font-size: 18PX;
+    width: 250px;
+
+}
+}
+
+
