@@ -2,6 +2,7 @@ import React from 'react'
 import { useContext } from 'react'
 import CartContext from '../context/CartContext'
 import { Rating } from './Rating'
+import RatingContextProvider from '../context/RatingContextProvider'
 
 
 
@@ -20,11 +21,12 @@ const CardBase = (props) => {
           <img src={movie.Poster ? movie.Poster : "n/a"} alt="" />
           </div>
 
+          <RatingContextProvider id={movie.imdbID}>
            <Rating
-           id={movie.imdbID}
            name = {movie.Title}
            
            />
+           </RatingContextProvider>
 
         <div className="  detailscontainer">
           <div className="bottomdetails lineheight txtlight flexcol">
@@ -41,13 +43,7 @@ const CardBase = (props) => {
             </div>
         </div>
 
-          
-
-           
-           
-
-
-             <button className=' secondarybtn regbutton lineheight txtlight flexcol' onClick={()=>toggleReview(movie.imdbID)}  >View Rating</button>
+             <button className=' secondarybtn regbutton lineheight txtlight flexcol' onClick={()=>toggleReview(movie.imdbID)}  >View Movie Score</button>
 
             {currInd === movie.imdbID && (
 
