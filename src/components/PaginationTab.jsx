@@ -31,28 +31,3 @@ const PaginationTab = () => {
 }
 
 export default PaginationTab
-
-// const stars = []
-
-//     const {getRating, removeRating, rating, id} = useContext(RatingContext)
-
-//       for(let i = 0; i < 5; i++){
-//             stars.push(
-//             <FontAwesomeIcon 
-//             className = {rating > i ? "starcolour":"star"} 
-//             onClick= {()=>getRating(i, id)} key={i} icon={faStar} 
-//             onDoubleClick={removeRating}
-//             />) 
-
-//           }
-
-// // console.log(rating, "rating set for", id, name)
-
-//   return (
-//     <div className='startcontainer'>
-//         {stars}
-        
-//     </div>
-//   )
-
-
