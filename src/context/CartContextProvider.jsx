@@ -6,7 +6,10 @@ import { useEffect } from 'react'
 const CartContextProvider = ({children}) => {
 
 
-  const [cartList, setCartList] = useState([])
+  const [cartList, setCartList] = useState(() => {
+  const savedList = localStorage.getItem('cartlist');
+  return savedList && savedList !== "undefined" ? JSON.parse(savedList) : [];
+});
   const [cartCount, setCartCount] = useState(0)
   const [openList, setOpenList] = useState(false)
   const [currInd, setCurrInd] = useState(null)
@@ -37,8 +40,12 @@ const CartContextProvider = ({children}) => {
             ...cartList,
             ele
         ]
+
         setCartList(updatedCartList)
+
     }
+
+       
    
     
    console.log("ind", ind)
@@ -48,6 +55,11 @@ const CartContextProvider = ({children}) => {
 
     
   }
+
+    useEffect(()=>{
+          localStorage.setItem('cartlist', JSON.stringify(cartList))
+        },[cartList])
+  
 
 
   function removeFromList(ele){
