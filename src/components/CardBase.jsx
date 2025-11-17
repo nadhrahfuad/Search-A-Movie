@@ -3,6 +3,7 @@ import { useContext } from 'react'
 import CartContext from '../context/CartContext'
 import { Rating } from './Rating'
 import RatingContextProvider from '../context/RatingContextProvider'
+import Placeholder from "../assets/placeholder.avif"
 
 
 
@@ -18,7 +19,7 @@ const CardBase = (props) => {
     <>
     <div  className='titleNPoster lineheight txtlight flexcol'>
           <h2 className="title">{movie.Title}</h2>
-          <img src={movie.Poster ? movie.Poster : "n/a"} alt="" />
+          <img src={movie.Poster && movie.Poster !== "N/A" ? movie.Poster : Placeholder} alt="" />
           </div>
 
           <RatingContextProvider id={movie.imdbID}>
