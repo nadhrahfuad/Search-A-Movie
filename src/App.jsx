@@ -4,7 +4,7 @@ import "./styles/app.css"
 import Searchbar from './components/Searchbar'
 import Display from './components/Display'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
+import { faBookmark } from '@fortawesome/free-solid-svg-icons'
 import Cart from './components/Cart'
 import { useContext } from 'react'
 import CartContext from './context/CartContext'
@@ -37,7 +37,7 @@ function App() {
     <div className="carticoncontainer">
 
     <span className= {`cartnum txtlight`}>{cartCount}</span>
-    <FontAwesomeIcon className={`${cartCount > 0? "primary" : "txtlight"}`}  onClick={toggleList} icon={faCartShopping} />
+    <FontAwesomeIcon className={`${cartCount > 0? "primary" : "txtlight"}`}  onClick={toggleList} icon={faBookmark} />
 
     </div>
     </div>
