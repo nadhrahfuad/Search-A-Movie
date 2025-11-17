@@ -4,11 +4,12 @@ import Loading from './Loading'
 import "../styles/app.css"
 import MovieContext from '../context/MovieContext'
 import { useContext } from 'react'
+import PaginationTab  from './PaginationTab'
 
 
 const Display = () => {
 
-  const {loading, finalList, errorMessage} = useContext(MovieContext)
+  const {loading, movies, errorMessage} = useContext(MovieContext)
   
  
 
@@ -24,11 +25,16 @@ const Display = () => {
 
           <Loading/>
         
-        ): finalList.length > 0?
+        ): movies.length > 0?
         (
+          <>
+          <PaginationTab/>
           <Cards
          
           />
+          
+          </>
+
         ):(
           <ErrorContainer
             message ={errorMessage}
