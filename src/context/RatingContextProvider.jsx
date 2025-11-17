@@ -26,7 +26,7 @@ const RatingContextProvider = ({children, id}) => {
 
       useEffect(()=>{
         localStorage.setItem(`stars-${id}`, JSON.stringify(rating))
-        console.log(`local storage stars-${id}`, localStorage.getItem(`stars-${id}`))
+        // console.log(`local storage stars-${id}`, localStorage.getItem(`stars-${id}`))
       },[rating, id])
 
 
