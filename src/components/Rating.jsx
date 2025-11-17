@@ -20,7 +20,7 @@ export const Rating = () => {
 
           }
 
-console.log(rating, "rating set for", id, name)
+// console.log(rating, "rating set for", id, name)
 
   return (
     <div className='startcontainer'>
