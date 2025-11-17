@@ -6,11 +6,11 @@ import MovieContext from './MovieContext'
 
 const MovieContextProvider = ({children}) => {
 
-    const [defaultMovies, setDefaultMovies] = useState([])
+    const [movies, setMovies] = useState([])
 
-    const [searchedMovies, setSearchedMovies] = useState([])
+    // const [searchedMovies, setSearchedMovies] = useState([])
 
-    const [userInput, setUserInput] = useState("")
+    const [userInput, setUserInput] = useState("spiderman")
 
     const [finalList, setFinalList] = useState([])
 
@@ -18,25 +18,36 @@ const MovieContextProvider = ({children}) => {
 
     const [errorMessage, setErrorMsg] = useState("")
 
+    const [page, setPage] = useState(1)
+
+
+    const [totalResults, setTotalResults] = useState(0)
+
     const apiKey = "e2a05fd2"
 
     let url 
+    let movieName
 
-    url =  userInput ? `http://www.omdbapi.com/?s=${userInput}&apikey=${apiKey}`:`http://www.omdbapi.com/?s=hello&apikey=${apiKey}`
+    movieName = userInput === "" ? "spiderman" : userInput
 
-    useEffect(()=>{
+    url = `https://www.omdbapi.com/?s=${movieName}&apikey=${apiKey}&page=${page}`
+
+    // :`https://www.omdbapi.com/?s=batman&apikey=${apiKey}&page=8`
+
+
         const fetchMovies = async()=>{
         setLoading(true)
         
             try{
 
-                if(userInput == ""){
-                    
+                
                     const res = await axios.get(url)
-                    setDefaultMovies(res.data.Search)
+                    console.log(res.data)
+                    setMovies(res.data.Search || [])
+                    const totalPages = res.data.totalResults ? Math.ceil(Number(res.data.totalResults)/10) : 0
+                    setTotalResults(totalPages)
                     console.log("default", res.data.Search)
-
-                }         
+     
               
             }catch(error){
                 setErrorMsg("We're having trouble getting movies")
@@ -46,8 +57,14 @@ const MovieContextProvider = ({children}) => {
             }
             
         }
-        fetchMovies()
-    },[userInput])
+  
+
+        useEffect(()=>{
+            
+                fetchMovies()
+
+        }, [userInput, page])
+   
 
 
     const searchMovie = async()=>{
@@ -60,16 +77,18 @@ const MovieContextProvider = ({children}) => {
                 const res = await axios.get(url)
                 const searchList = res.data.Search || []
 
-                const found = searchList.find(function(movie){
-                    return movie.Title.toLocaleLowerCase() === userInput.toLocaleLowerCase()
+                const found = searchList.filter(function(movie){
+                    return movie.Title.toLocaleLowerCase().includes(userInput.toLocaleLowerCase()) 
                 })
 
-                if(found && found.imdbID){
-                    setSearchedMovies([found])
+                console.log(found)
+
+                if(found){
+                    setMovies(found)
                     
                     
                 }else{
-                    setSearchedMovies([])
+                    setMovies([])
                     setErrorMsg("Movie not found")
                     console.log("Not found")
                 }
@@ -96,16 +115,17 @@ const MovieContextProvider = ({children}) => {
 
             try{
                
-                const showMovies = searchedMovies.length > 0 ? searchedMovies : defaultMovies
+               
 
-                const existingMovies = showMovies.filter(function(ele){
+                const existingMovies = movies.filter(function(ele){
                     return ele && ele.imdbID
                 })
+
 
                 if(existingMovies.length>0){
 
                      for (let movie of existingMovies){
-                    const res = await axios.get(`http://www.omdbapi.com/?i=${movie.imdbID}&apikey=${apiKey}`)
+                    const res = await axios.get(`https://www.omdbapi.com/?i=${movie.imdbID}&apikey=${apiKey}`)
 
                     holdDetails.push(res.data)
                 }
@@ -134,27 +154,32 @@ const MovieContextProvider = ({children}) => {
             
             
         }
-         if(searchedMovies.length>0 || defaultMovies.length>0){
+         if(movies.length>0){
             fetchMovieDetails()
          }
         
-    }, [searchedMovies, defaultMovies])
+    }, [movies])
 
  
 
+    function nextPage(id){
+        setPage(id)
+
+    }
 
 
   return (
     <MovieContext.Provider 
     value={{
-        defaultMovies,
-        searchedMovies,
+        movies,
         finalList,
         userInput,
         loading,
         errorMessage,
+        totalResults,
         setUserInput,
-        searchMovie}} >
+        searchMovie,
+        nextPage}} >
 
         {children}
 
