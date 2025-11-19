@@ -20,6 +20,8 @@ const MovieContextProvider = ({children}) => {
 
     const [page, setPage] = useState(1)
 
+    const [currentPage, setCurrentPage] = useState(1)
+
 
     const [totalResults, setTotalResults] = useState(0)
 
@@ -164,6 +166,7 @@ const MovieContextProvider = ({children}) => {
 
     function nextPage(id){
         setPage(id)
+        setCurrentPage(id)
 
     }
 
@@ -177,6 +180,7 @@ const MovieContextProvider = ({children}) => {
         loading,
         errorMessage,
         totalResults,
+        currentPage,
         setUserInput,
         searchMovie,
         nextPage}} >
