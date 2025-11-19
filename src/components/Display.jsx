@@ -28,10 +28,12 @@ const Display = () => {
         ): movies.length > 0?
         (
           <>
-          <PaginationTab/>
+         
           <Cards
          
           />
+
+           <PaginationTab/>
           
           </>
 
