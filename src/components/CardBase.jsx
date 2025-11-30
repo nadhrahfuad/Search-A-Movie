@@ -1,9 +1,11 @@
-import React from 'react'
 import { useContext } from 'react'
-import CartContext from '../context/CartContext'
+import SavedContext from '../context/SavedContext'
 import { Rating } from './Rating'
 import RatingContextProvider from '../context/RatingContextProvider'
 import Placeholder from "../assets/placeholder.avif"
+import CartContext from '../context/CartContext'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 
 
 
@@ -12,8 +14,13 @@ import Placeholder from "../assets/placeholder.avif"
 const CardBase = (props) => {
 
   const {movie} = props
-  const {toggleReview, currInd} = useContext(CartContext)
+  const {toggleReview, currInd} = useContext(SavedContext)
+  const {addToCart, cartList} = useContext(CartContext)
 
+
+  const isInCart = cartList.some(function(ele){
+    return ele.imdbID === movie.imdbID
+  })
 
   return (
     <>
@@ -35,16 +42,46 @@ const CardBase = (props) => {
               <p className="genre fontsml">Genre: {movie.Genre}</p>
               <p className="country fontsml">Country: {movie.Country}</p>
             </div>
-          <div className="plotcontainer">
+          {/* <div className="plotcontainer">
             <p className="plot fontsml">{movie.Plot}</p>
-          </div>
+          </div> */}
           <div>
              <p className="year txtlight fontsml">Production Year: {movie.Year ? movie.Year : "n/a"}</p>
           </div>
             </div>
+
+             <div className="price-container">
+          <p className="price">
+            $ {movie.Price}
+          </p>
+            
+          </div>
+
+          
+
+
         </div>
 
              <button className=' secondarybtn regbutton lineheight txtlight flexcol' onClick={()=>toggleReview(movie.imdbID)}  >View Movie Score</button>
+
+
+            {!isInCart && (
+
+               <button className= "lineheight primarybtn regbutton" onClick={()=>{
+                                    addToCart(movie)
+                                   }}>
+                                    <div className='addtocartinnerbtn'>
+                                    <span >Add To Cart</span>
+                                    <span className="price"></span>
+                                    
+                                    <FontAwesomeIcon icon={faCartShopping} className=' addToCart' />
+                                    </div>
+                                    
+                                   </button> 
+
+
+            ) }
+              
 
             {currInd === movie.imdbID && (
 
@@ -67,7 +104,9 @@ const CardBase = (props) => {
           )
            
           
+          
         }
+        
         </div>
         
           <div className="breaklinecontainer">

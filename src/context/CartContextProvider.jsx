@@ -1,139 +1,127 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import CartContext from './CartContext'
-import { useEffect } from 'react'
+import SavedContext from './SavedContext'
 
 const CartContextProvider = ({children}) => {
 
+    // const {removeFromList} = useContext(SavedContext)
 
-  const [cartList, setCartList] = useState(() => {
-  const savedList = localStorage.getItem('cartlist');
-  return savedList && savedList !== "undefined" ? JSON.parse(savedList) : [];
-});
-  const [cartCount, setCartCount] = useState(0)
-  const [openList, setOpenList] = useState(false)
-  const [currInd, setCurrInd] = useState(null)
-  const [error, setErrorInd] = useState(null)
-
-  const [errorMessage, setErrorMessage] = useState("")
-
-   function toggleList(){
-    
-    setOpenList(!openList)
-  }
-
-
-  function saveToList(ele,ind){
-
-    const duplicate = cartList.find(function(movie){
-        return movie.imdbID === ele.imdbID
-    })
-
-    if(duplicate){
-         setErrorInd(ele.imdbID)
-         console.log("already added")
-         setErrorMessage("Already added")
-        
-         
-    }else{
-        const updatedCartList = [
-            ...cartList,
-            ele
-        ]
-
-        setCartList(updatedCartList)
-
-    }
-
-       
-   
-    
-   console.log("ind", ind)
-
-   console.log("duplicate", duplicate)
-   console.log("cartcount", cartCount)
+    //  const {openCart, cartCount, toggleCart} = useContext(CartContext)
 
     
-  }
+    const [openCart, setOpenCart] = useState(false)
+    const [cartCount, setCartCount] = useState(0)
+    const [totalPrice, setTotalPrice] = useState(0)
+    const [priceList, setPriceList] = useState([])
+    const [cartErrorMessage, setCartErrorMessage] = useState("")
+    const [cartErrorInd, setCartErrorInd] = useState(null)
 
-    useEffect(()=>{
-          localStorage.setItem('cartlist', JSON.stringify(cartList))
+    
+      const [cartList, setCartList] = useState(() => {
+    const cartList = localStorage.getItem('cartlist');
+    return cartList && cartList !== "undefined" ? JSON.parse(cartList) : []})
+
+   useEffect(()=>{
+          localStorage.setItem('savedlist', JSON.stringify(cartList))
         },[cartList])
   
 
 
-  function removeFromList(ele){
+    function toggleCart(){
+        setOpenCart(!openCart)
+    }
+    
+    function addToCart(ele){
 
-    const duplicate = cartList.find(function(movie){
-        return movie.imdbID === ele.imdbID
-    })
+        const found = cartList.find(function(movie){
+            return movie.imdbID == ele.imdbID
+        })
 
-    if(duplicate){
+        if(found){
+            setCartErrorInd(ele.imdbID)
+            setCartErrorMessage("Already added!")
+        }else{
+
+            setCartList([
+            ...cartList,
+            ele
+        ])
+        setOpenCart(true)
+        setPriceList(
+            [...priceList,
+            ele.Price]
+        )
+        // removeFromList(ele)
+
+        }
+ 
+        
+    }
+
+    function removeFromCart(ele, ind){
         const updatedList = cartList.filter(function(movie){
             return movie.imdbID !== ele.imdbID
         })
 
         setCartList(updatedList)
-    }
 
+        const updatedPriceList = priceList.slice()
+        
+        updatedPriceList.splice(ind, 1)
 
-  }
+        setPriceList(updatedPriceList)
 
         
-    function toggleReview(movieInd){
-        console.log("clicked")
-        // setCurrInd(movieInd)
-        if (currInd === movieInd){
-            setCurrInd(null)
-        }else{
-            setCurrInd(movieInd)
+    }
+
+    useEffect(()=>{
+
+            setCartCount(cartList.length)
+        
+    }, [cartList])
+
+
+
+    console.log("Cart item",cartList)
+
+    useEffect(()=>{
+
+        if(priceList.length === 0){
+            setTotalPrice(0)
         }
 
+            const total = priceList.reduce(function(first, second){
+            return Number(first) + Number(second)
+        },0)
+
+        setTotalPrice(total.toFixed(2))
+
+
         
-
-    }
-
-    console.log(currInd)
-    
-
-   useEffect(()=>{
-    setCartCount(cartList.length)
-    // console.log("cartcount", cartCount)
-
-   },[cartList]) 
-  
-
-
-
+    }, [priceList])
 
   return (
     <CartContext.Provider
     value={
         {
-        cartList,
-        setCartList,
-        openList,
-        cartCount,
-        setOpenList,
-        toggleList,
-        currInd,
-        setCurrInd,
-        setCartCount,
-        saveToList,
-        error,
-        setErrorInd,
-        removeFromList,
-        toggleReview,
-        errorMessage
-    
-    
-    }
+
+            addToCart,
+            cartList,
+            toggleCart,
+            cartCount,
+            openCart,
+            totalPrice,
+            cartErrorInd,
+            cartErrorMessage,
+            priceList,
+            removeFromCart
+
+        }
     }
     
     >
 
     {children}
-
     </CartContext.Provider>
   )
 }

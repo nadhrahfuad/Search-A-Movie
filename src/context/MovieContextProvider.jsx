@@ -8,9 +8,7 @@ const MovieContextProvider = ({children}) => {
 
     const [movies, setMovies] = useState([])
 
-    // const [searchedMovies, setSearchedMovies] = useState([])
-
-    const [userInput, setUserInput] = useState("spiderman")
+    const [userInput, setUserInput] = useState("")
 
     const [finalList, setFinalList] = useState([])
 
@@ -21,7 +19,6 @@ const MovieContextProvider = ({children}) => {
     const [page, setPage] = useState(1)
 
     const [currentPage, setCurrentPage] = useState(1)
-
 
     const [totalResults, setTotalResults] = useState(0)
 
@@ -129,7 +126,17 @@ const MovieContextProvider = ({children}) => {
                      for (let movie of existingMovies){
                     const res = await axios.get(`https://www.omdbapi.com/?i=${movie.imdbID}&apikey=${apiKey}`)
 
-                    holdDetails.push(res.data)
+                    
+                    const min = 10
+                    const max = 60
+
+                    const randomPrice = (Math.random() * (max - min + 1)+ min).toFixed(2)
+
+
+                    holdDetails.push({
+                        ...res.data,
+                        Price: randomPrice
+                    })
                 }
                 setFinalList(holdDetails)
                  setErrorMsg("")
