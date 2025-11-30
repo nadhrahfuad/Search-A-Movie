@@ -39,13 +39,19 @@ function App() {
     
     <div className="savediconcontainer">
 
-    <span className= {`savednum txtlight`}>{savedCount}</span>
+
+       <span className= {`savednum txtlight `}>{savedCount}</span>
+
+   
     <FontAwesomeIcon className={`${savedCount > 0? "primary" : "txtlight"}`}  onClick={toggleList} icon={faBookmark} />
 
     </div>
      <div className="savediconcontainer">
 
-    <span className= {`savednum txtlight`}>{cartCount}</span>
+
+     <div className="countcontainer">
+       <span className= {`savednum txtlight fontsml`}>{cartCount}</span>
+    </div>
     <FontAwesomeIcon className={`${cartCount > 0? "primary" : "txtlight"}`}  onClick={toggleCart} icon={faShoppingBag} />
 
     </div>

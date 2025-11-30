@@ -117,4 +117,16 @@ img{
     transition: 0.5s;
 }
 
+.price-container{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.genrencountrynyear{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
 

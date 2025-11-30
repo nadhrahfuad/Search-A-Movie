@@ -38,20 +38,19 @@ const CardBase = (props) => {
 
         <div className="  detailscontainer">
           <div className="bottomdetails lineheight txtlight flexcol">
-            <div className="genrencountry sectionpadding flexcol">
+            <div className="genrencountrynyear">
               <p className="genre fontsml">Genre: {movie.Genre}</p>
               <p className="country fontsml">Country: {movie.Country}</p>
+              <p className="year fontsml">Production Year: {movie.Year ? movie.Year : "n/a"}</p>
             </div>
           {/* <div className="plotcontainer">
             <p className="plot fontsml">{movie.Plot}</p>
           </div> */}
-          <div>
-             <p className="year txtlight fontsml">Production Year: {movie.Year ? movie.Year : "n/a"}</p>
-          </div>
             </div>
 
              <div className="price-container">
-          <p className="price">
+              <p className='fontreg txtlight'>Price:</p>
+          <p className="price fontreg orangetxt">
             $ {movie.Price}
           </p>
             
