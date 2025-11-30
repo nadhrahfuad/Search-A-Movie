@@ -4,16 +4,21 @@ import ErrorContainer from './ErrorContainer'
 import CardBase from './CardBase'
 import { useContext } from 'react'
 import MovieContext from '../context/MovieContext'
-import CartContext from '../context/CartContext'
+import SavedContext from '../context/SavedContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBookmark } from '@fortawesome/free-solid-svg-icons'
+import CartContext from '../context/CartContext'
+import "../styles/cart.css"
 
 
 
 const Cards = () => {
 
   const {finalList} = useContext(MovieContext)
-  const { saveToList, error, errorMessage} = useContext(CartContext)
+  const { saveToList, error, errorMessage} = useContext(SavedContext)
+  // const {cartErrorInd, cartErrorMessage} = useContext(CartContext)
+
+  
 
   
   return (
@@ -34,18 +39,33 @@ const Cards = () => {
             
           {error === ele.imdbID && 
            <ErrorContainer message={errorMessage} />}
+
+            {/* {cartErrorInd === ele.imdbID && 
+           <ErrorContainer message={cartErrorMessage} />} */}
            
           <button className= "lineheight primarybtn adddelete" onClick={()=>{
             saveToList(ele, ind)
-          
-
-           }}><FontAwesomeIcon icon={faBookmark} className=' savetolist' /></button> 
+           }}><FontAwesomeIcon icon={faBookmark} className=' savetolist' />
+           </button> 
            </div>
+
 
           <CardBase 
           ////u have to pass ele because thats each movie obj
           movie = {ele}
           />
+
+          {/* <button className= "lineheight primarybtn regbutton" onClick={()=>{
+            addToCart(ele, ind)
+           }}>
+            <div className='addtocartinnerbtn'>
+            <span >Add To Cart</span>
+            <span className="price"></span>
+            
+            <FontAwesomeIcon icon={faCartShopping} className=' addToCart' />
+            </div>
+            
+           </button>  */}
             
 
 
