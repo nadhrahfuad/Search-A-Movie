@@ -1,61 +1,101 @@
-.listcontainerouter{
-     display: flex;
-     flex-direction: column;
-     justify-content: flex-start;
-     align-items: center;
-     background-color: rgba(16, 13, 13, 0.959);
-     position: absolute; 
-    /* gap: 20px; */
-    left: 0;
-    padding: 8px 32px;
-    border-radius: 20px;
+.addtocartinnerbtn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+
+.cartoutercontainer{
+    position: absolute;
     margin-top: 16px;
-    width: 100%;
-    min-height: 100vh;
-    /* border: green solid 2px; */
-   
-}
-
-.listtitle{
-  display: flex;
-  padding-top: 32px;
-  padding-bottom: 24px;
-  padding-left: 20px;
-}
-
-.listtxt{
-    font-size: 20px;
-}
-
-.listinner{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-    /* border: RED 2PX SOLID; */
     background-color: #172239;
-     z-index: 3;
-     
-
-}
-
-.cardndelete{
-  border: orange solid 3px;
-}
-
-.removecontainer button{
-  font-size: 20px;
-}
-
-
-.emptycontainer{
+    right: 0;
+    height: 100vh;
+    padding-left: 32px;
+    padding-right: 32px;
+    border-radius: 20px 0px 0px 20px;
     display: flex;
     flex-direction: column;
-   justify-content: center;
-    align-items: center;
-    gap: 20px;
+    gap: 16px;
 }
 
-.emptyimg{
-  height: 200px;
-  width: auto;
+.carttitle{
+    display: flex;
+  padding-top: 32px;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.cartitem{
+
+    background-color: #2d3b57;
+    border-radius: 10px;
+    padding: 8px 16px;
+  
+}
+
+.cartitem >*{
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.removebtn{
+    padding: 2px 2px;
+    border-radius: 20px;
+}
+
+.titlentype{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+.titlentypeleft{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.pricecontainer{
+    display: flex;
+    justify-content: end;
+    padding-right: 8px;
+}
+
+
+
+.cartitemcontainer{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.type{
+    display: inline-block;
+    text-transform: capitalize;
+    background-color: #1d222dbb;
+    padding: 2px 10px;
+    border-radius: 15px;
+    
+}
+
+.closeicon{
+    cursor: pointer;
+}
+
+.totalinnercontainer{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-right: 18px;
+}
+
+@media(max-width: 445px){
+    .titlentypeleft{
+    align-items:flex-start;
+    /* border: red solid 2px; */
+
+}
 }
